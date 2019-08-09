@@ -56,9 +56,13 @@ class EventSyncer {
     let sub = new ReplaySubject();
 
     let children = this.db.getCollection('children')
+    let pastEvents = []
     for (let previous of children.find({ 'eventKey': eventKey })) {
       console.dir("checking previous event: " + previous.id)
-      sub.next(previous)
+      pastEvents.push(previous)
+    }
+    if (pastEvents.length > 0) {
+      sub.next(...pastEvents)
     }
 
     let contractObserver = fromEvent(this.events, eventName)
