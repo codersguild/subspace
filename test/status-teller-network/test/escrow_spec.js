@@ -155,9 +155,7 @@ contract("Escrow", function() {
           escrow.buyerInfo = await MetadataStore.methods.users(escrow.buyer).call();
           return escrow;
         }),
-        scan((accum, curr) => {
-          return [...accum, curr];
-        }, [])
+        scan((accum, curr) => [...accum, curr], [])
       );
 
       const subscription = accountEscrowsObservable.subscribe(escrows => {
