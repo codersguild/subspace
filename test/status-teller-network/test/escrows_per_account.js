@@ -78,9 +78,6 @@ config({
 });
 
 contract("Escrow", function() {
-
-  const {toBN} = web3.utils;
-
   let receipt,ethOfferId, tokenOfferId, hash, signature, nonce;
   let eventSyncer;
 
